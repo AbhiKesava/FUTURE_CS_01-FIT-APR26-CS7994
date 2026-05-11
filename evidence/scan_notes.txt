@@ -1,0 +1,217 @@
+Website Vulnerability Assessment – Scan Notes
+
+Project:
+Website Vulnerability Assessment & Security Risk Analysis
+
+Assessment Type:
+Passive Read-Only Security Assessment
+
+Target Website:
+https://testphp.vulnweb.com
+
+Assessment Date:
+26 May 2026
+
+Assessor:
+Abhinav Kesavapatanam
+
+------------------------------------------------------------
+OBJECTIVE
+------------------------------------------------------------
+
+The objective of this assessment was to perform a passive and ethical
+security review of a public-facing website in order to identify
+common security weaknesses and provide remediation recommendations.
+
+The assessment focused on:
+
+- Security headers
+- Information disclosure
+- Cookie security
+- SSL/TLS configuration
+- Exposed services
+- Publicly visible configurations
+
+No exploitation or harmful testing was performed.
+
+------------------------------------------------------------
+TOOLS USED
+------------------------------------------------------------
+
+1. Nmap
+Purpose:
+Basic port and service exposure analysis
+
+Example Command:
+nmap -sV -T4 testphp.vulnweb.com
+
+------------------------------------------------------------
+
+2. OWASP ZAP
+Purpose:
+Passive vulnerability scanning and header inspection
+
+Scan Type:
+Passive Scan Only
+
+------------------------------------------------------------
+
+3. Browser Developer Tools
+Purpose:
+Cookie analysis, response header inspection,
+client-side observations
+
+------------------------------------------------------------
+ASSESSMENT OBSERVATIONS
+------------------------------------------------------------
+
+[1] Missing Security Headers
+
+Observation:
+Several recommended HTTP security headers were not present.
+
+Missing Headers Identified:
+- Content-Security-Policy
+- X-Frame-Options
+- X-Content-Type-Options
+- Strict-Transport-Security
+
+Risk Level:
+Medium
+
+Business Impact:
+Missing security headers may increase the risk of:
+- Cross-site scripting attacks
+- Clickjacking
+- MIME-sniffing attacks
+
+Recommendation:
+Implement modern HTTP security headers.
+
+------------------------------------------------------------
+
+[2] Information Disclosure
+
+Observation:
+Server and framework-related information was visible in
+responses and page source.
+
+Examples:
+- Microsoft-IIS/8.5
+- ASP.NET framework details
+
+Risk Level:
+Medium
+
+Business Impact:
+Technology disclosure may help attackers perform
+reconnaissance activities.
+
+Recommendation:
+Reduce unnecessary server and framework disclosures.
+
+------------------------------------------------------------
+
+[3] Weak Cookie Security Configuration
+
+Observation:
+Cookies lacked secure protection attributes.
+
+Missing Attributes:
+- HttpOnly
+- Secure
+- SameSite
+
+Risk Level:
+Medium
+
+Business Impact:
+Weak cookie configuration may increase the likelihood
+of session hijacking risks.
+
+Recommendation:
+Apply secure cookie configurations for all session cookies.
+
+------------------------------------------------------------
+
+[4] Open Exposed Services
+
+Observation:
+Public-facing services and ports were identified during
+passive scanning activities.
+
+Detected Services:
+- HTTP
+- HTTPS
+- FTP
+
+Risk Level:
+Low
+
+Business Impact:
+Exposed services increase the attack surface available
+to malicious actors.
+
+Recommendation:
+Restrict unnecessary publicly exposed services.
+
+------------------------------------------------------------
+
+[5] SSL/TLS Configuration Observation
+
+Observation:
+TLS configuration requires additional hardening practices.
+
+Risk Level:
+Low
+
+Business Impact:
+Weak or outdated TLS configurations may reduce transport
+security effectiveness.
+
+Recommendation:
+- Use modern TLS versions
+- Disable deprecated protocols
+- Enforce strong cipher suites
+
+------------------------------------------------------------
+OVERALL RISK SUMMARY
+------------------------------------------------------------
+
+Security Headers           : Medium
+Information Disclosure     : Medium
+Cookie Security            : Medium
+Exposed Services           : Low
+SSL/TLS Hardening          : Low
+
+Overall Security Posture:
+Moderate Risk
+
+------------------------------------------------------------
+ETHICAL STATEMENT
+------------------------------------------------------------
+
+This assessment was conducted using passive and read-only
+techniques only.
+
+No exploitation, brute-force attacks, denial-of-service
+testing, or unauthorized access attempts were performed.
+
+The assessment was completed strictly for educational and
+security awareness purposes.
+
+------------------------------------------------------------
+FINAL CONCLUSION
+------------------------------------------------------------
+
+The assessment identified several common web security
+weaknesses frequently observed in public-facing applications.
+
+While no critical vulnerabilities were actively exploited,
+improvements in security headers, cookie protections,
+transport security, and exposure management would
+significantly strengthen the overall security posture
+of the website.
+
+Regular security reviews and secure configuration
+management are strongly recommended.
